@@ -5,4 +5,4 @@ Exec=/opt/electronic-wechat-linux-x64/electronic-wechat %U
 Terminal=false
 Type=Application
 Icon=/opt/electronic-wechat-linux-x64/assets/icon.png
-Categories=Network;Utility;Chat;
+Categories=Network;InstantMessaging;
