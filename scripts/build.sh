@@ -16,6 +16,8 @@ fi
 
 PLATFORM=$1
 ARCH=$2
+ELECTRON_VERSION=$(awk -F\" '/"electron"/ {print $4}' ./package.json)
+APP_VERSION=$(awk -F\" '/"version"/ {print $4}' ./package.json)
 
 echo "Start packaging for $PLATFORM $ARCH."
 
@@ -27,7 +29,7 @@ fi
 
 ignore_list="dist|scripts|\.idea|.*\.md|.*\.yml|node_modules/nodejieba|install"
 
-electron-packager . "${APP_NAME}" --platform=$PLATFORM --arch=$ARCH --electronVersion=6.0.7 --app-version=2.3.1 --asar --icon=assets/icon.icns --overwrite --out=./dist --ignore=${ignore_list}
+electron-packager . "${APP_NAME}" --platform=$PLATFORM --arch=$ARCH --electronVersion=$ELECTRON_VERSION --app-version=$APP_VERSION --asar --icon=assets/icon.icns --overwrite --out=./dist --ignore=${ignore_list}
 
 if [ $? -eq 0 ]; then
   echo -e "$(tput setaf 2)Packaging for $PLATFORM $ARCH succeeded.$(tput sgr0)\n"
